@@ -7,13 +7,10 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItems;
 
-
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("test")
 class BookStoreControllerTest {
-
 
     @Value("${spring.security.user.name}")
     private String customerUserName;
@@ -34,9 +31,9 @@ class BookStoreControllerTest {
     public void customerShouldGetListOfBookstores(){
         given()
                 .auth().basic(customerUserName, customerPassword)
-                .when()
-                .get("/bookstore")
-                .then()
+        .when()
+                .get("http://localhost:8080/bookstore")
+        .then()
                 .statusCode(200)
                 .body("[0].name", equalTo("Jans bookstore"));
     }
