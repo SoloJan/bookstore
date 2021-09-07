@@ -1,5 +1,6 @@
 package nl.jansolo.bookstore.api;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import nl.jansolo.bookstore.api.dto.BookstoreDto;
 import nl.jansolo.bookstore.mapper.BookstoreMapper;
@@ -25,6 +26,7 @@ public class BookStoreController {
     private final BookstoreMapper mapper;
 
     @GetMapping
+    @Operation(summary = "Get all the book stores")
     public ResponseEntity<List<BookstoreDto>> getBookStores() {
         List<BookstoreDto> bookstores = service.findAllStores().stream().map(bs -> mapper.toDTO(bs)).collect(Collectors.toList());
         return new ResponseEntity<>(bookstores, HttpStatus.OK);

@@ -40,6 +40,7 @@ public class DefaultWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 .and()
                 .authorizeRequests()
                 .antMatchers( "/h2-console/**").permitAll()
+                .antMatchers("/v3/api-docs/**", "/swagger*/**", "/webjars/**").permitAll()
                 .antMatchers("/bookstore/**").hasRole(ROLE_CUSTOMER)
                 .anyRequest().denyAll()
                 .and()
