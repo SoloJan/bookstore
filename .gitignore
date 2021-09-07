@@ -37,6 +37,6 @@ reports/
 
 # misc
 *.orig
-/api/target/
+/backend/target/
 *.log
 .scannerwork/
