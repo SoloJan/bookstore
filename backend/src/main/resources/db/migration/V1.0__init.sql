@@ -14,3 +14,6 @@ CREATE TABLE public.bookstore
 
 alter table public.bookstore add primary key (id);
 
+INSERT INTO public.bookstore (id, name)
+VALUES (1, 'Jans bookstore');
+
