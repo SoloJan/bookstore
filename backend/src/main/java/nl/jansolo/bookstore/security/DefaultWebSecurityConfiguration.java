@@ -25,7 +25,7 @@ public class DefaultWebSecurityConfiguration extends WebSecurityConfigurerAdapte
     private String username;
     @Value("${spring.security.user.password}")
     private String password;
-    
+
     /**
      * Configures security for HTTP
      * The bookstore endpoint can now be accesed by a user who is logged in and has the role customer
@@ -36,8 +36,10 @@ public class DefaultWebSecurityConfiguration extends WebSecurityConfigurerAdapte
     protected void configure(final HttpSecurity http) throws Exception {
         http
                 .cors().and()
-                .csrf().disable()
+                .csrf().disable().headers().frameOptions().disable()
+                .and()
                 .authorizeRequests()
+                .antMatchers( "/h2-console/**").permitAll()
                 .antMatchers("/bookstore/**").hasRole(ROLE_CUSTOMER)
                 .anyRequest().denyAll()
                 .and()
