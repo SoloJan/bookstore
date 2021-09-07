@@ -1,0 +1,42 @@
+# Eclipse project files
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+# IntelliJ project files
+.idea
+*.iws
+*.iml
+*.ipr
+
+# Output
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Log
+logs/
+reports/
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.apt_generated
+.factorypath
+.springBeans
+*.iws
+*.iml
+*.ipr
+
+# misc
+*.orig
+/api/target/
+*.log
+.scannerwork/
