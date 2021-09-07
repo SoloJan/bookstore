@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("test")
-class BookStoreControllerTest {
+class BookstoreControllerTest {
 
     @Value("${spring.security.user.name}")
     private String customerUserName;

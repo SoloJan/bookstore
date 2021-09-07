@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/bookstore")
 @RequiredArgsConstructor
-public class BookStoreController {
+public class BookstoreController {
 
 
     private final BookstoreService service;
