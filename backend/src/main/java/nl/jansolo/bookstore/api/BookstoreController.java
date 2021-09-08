@@ -32,4 +32,6 @@ public class BookstoreController {
         return new ResponseEntity<>(bookstores, HttpStatus.OK);
     }
 
+
+
 }

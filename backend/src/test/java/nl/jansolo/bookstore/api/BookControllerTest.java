@@ -6,10 +6,10 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 
-class BookstoreControllerTest extends ApiTest {
+class BookControllerTest extends ApiTest {
 
     private String getBaseUrl(){
-        return getUrl("/bookstore");
+        return getUrl("/book");
     }
 
     @Test
@@ -18,15 +18,17 @@ class BookstoreControllerTest extends ApiTest {
     }
 
     @Test
-    public void customerShouldGetListOfBookstores(){
+    public void customerShouldGetListOfBooks(){
         given()
                 .auth().basic(customerUserName, customerPassword)
-                .when()
+        .when()
                 .get(getBaseUrl())
-                .then()
+        .then()
                 .statusCode(200)
-                .body("$.size", equalTo(1))
-                .body("[0].name", equalTo("Jans bookstore"));
+                .body("$.size", equalTo(2))
+                .body("[0].title", equalTo("Java for dummies"))
+                .body("[1].title", equalTo("JavaScript: The Good Parts"));
     }
+
 
 }

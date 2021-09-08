@@ -3,16 +3,11 @@ package nl.jansolo.bookstore.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @EnableWebSecurity
@@ -42,6 +37,7 @@ public class DefaultWebSecurityConfiguration extends WebSecurityConfigurerAdapte
                 .antMatchers( "/h2-console/**").permitAll()
                 .antMatchers("/v3/api-docs/**", "/swagger*/**", "/webjars/**").permitAll()
                 .antMatchers("/bookstore/**").hasRole(ROLE_CUSTOMER)
+                .antMatchers("/book/**").hasRole(ROLE_CUSTOMER)
                 .anyRequest().denyAll()
                 .and()
                 .httpBasic();
