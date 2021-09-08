@@ -12,9 +12,9 @@ public abstract class ApiTest {
 
     private final static String BASE_URL = "http://localhost:6643";
 
-    @Value("${spring.security.user.name}")
+    @Value("${customer.user.name}")
     protected String customerUserName;
-    @Value("${spring.security.user.password}")
+    @Value("${customer.user.password}")
     protected String customerPassword;
 
     protected String getUrl(String endpoint){
