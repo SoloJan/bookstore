@@ -13,8 +13,6 @@
         <jacoco.threshold>0.90</jacoco.threshold>
         <jacoco.dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.dataFile>
         <skip.unit.tests>false</skip.unit.tests>
-        <skip.integration.tests>false</skip.integration.tests>
-        <failsafeArgLine>true</failsafeArgLine>
         <!--suppress UnresolvedMavenProperty -->
         <argLine>${surefireArgLine}</argLine>
     </properties>
@@ -95,49 +93,15 @@
 
                 <!-- Use UTC as default timezone for all tests-->
                 <argLine>-Duser.timezone=UTC ${argLine}</argLine>
-
-                <!-- Excludes integration tests when unit tests are run. -->
-                <excludes>
-                    <exclude>**/IT*.java</exclude>
-                </excludes>
             </configuration>
         </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-failsafe-plugin</artifactId>
-            <version>3.0.0-M4</version>
-            <executions>
-                <!--
-                    Ensures that both integration-test and verify goals of the Failsafe Maven
-                    plugin are executed.
-                -->
-                <execution>
-                    <id>integration-tests</id>
-                    <goals>
-                        <goal>integration-test</goal>
-                        <goal>verify</goal>
-                    </goals>
-                    <configuration>
-                        <!-- Sets the VM argument line used when integration tests are run. -->
-                        <argLine>${failsafeArgLine}</argLine>
-                        <!--
-                            Skips integration tests if the value of skip.integration.tests property
-                            is true
-                        -->
-                        <skipTests>${skip.integration.tests}</skipTests>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-
-
         <plugin>
             <groupId>org.jacoco</groupId>
             <artifactId>jacoco-maven-plugin</artifactId>
             <version>0.8.5</version>
             <configuration>
                 <excludes>
-                    <exclude>**/*BookStoreApplication*</exclude>
+                    <exclude>**/*BookstoreApplication*</exclude>
                 </excludes>
             </configuration>
             <executions>
@@ -170,28 +134,6 @@
                     </goals>
                     <configuration>
                         <dataFile>${jacoco.dataFile}</dataFile>
-                        <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-                    </configuration>
-                </execution>
-                <execution>
-                    <id>pre-integration-test</id>
-                    <phase>pre-integration-test</phase>
-                    <goals>
-                        <goal>prepare-agent</goal>
-                    </goals>
-                    <configuration>
-                        <destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
-                        <propertyName>failsafeArgLine</propertyName>
-                    </configuration>
-                </execution>
-                <execution>
-                    <id>post-integration-test</id>
-                    <phase>post-integration-test</phase>
-                    <goals>
-                        <goal>report</goal>
-                    </goals>
-                    <configuration>
-                        <dataFile>${project.build.directory}/coverage-reports/jacoco-it.exec</dataFile>
                         <outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
                     </configuration>
                 </execution>
