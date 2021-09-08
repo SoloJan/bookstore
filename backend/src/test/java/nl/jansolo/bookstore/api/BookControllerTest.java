@@ -2,7 +2,6 @@ package nl.jansolo.bookstore.api;
 
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 
@@ -19,8 +18,7 @@ class BookControllerTest extends ApiTest {
 
     @Test
     public void customerShouldGetListOfBooks(){
-        given()
-                .auth().basic(customerUserName, customerPassword)
+        givenACustomerIsLoggedIn()
         .when()
                 .get(getBaseUrl())
         .then()

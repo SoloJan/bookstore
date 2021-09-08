@@ -59,7 +59,7 @@ public class DefaultWebSecurityConfiguration extends WebSecurityConfigurerAdapte
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser(customerUserName).password("{noop}"+ customerPassword).roles(ROLE_CUSTOMER);
-        auth.inMemoryAuthentication().withUser(shopKeeperPassword).password("{noop}"+ shopKeeperPassword).roles(ROLE_SHOPKEEPER);
+        auth.inMemoryAuthentication().withUser(shopkeeperUserName).password("{noop}"+ shopKeeperPassword).roles(ROLE_SHOPKEEPER);
     }
 
 }
