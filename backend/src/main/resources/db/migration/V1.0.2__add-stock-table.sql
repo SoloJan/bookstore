@@ -3,8 +3,7 @@ CREATE TABLE public.stock
     id bigint NOT NULL,
     store_id bigint NOT NULL,
     book_id bigint NOT NULL,
-    title character varying(256),
-    author character varying(256)
+    stock_count int
 );
 
 alter table public.stock
@@ -14,4 +13,4 @@ alter table public.stock
         REFERENCES bookstore(id);
 alter table public.stock
     ADD FOREIGN KEY (book_id)
-        REFERENCES bookstore(id);
+        REFERENCES book(id);

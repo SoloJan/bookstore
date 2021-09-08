@@ -23,7 +23,7 @@ public class Bookstore {
     @NaturalId
     private String name;
 
-    @OneToMany(mappedBy = "store",  orphanRemoval = true)
+    @OneToMany(mappedBy = "store",  orphanRemoval = true, cascade = CascadeType.ALL)
     private  Set<Stock> stock = new HashSet<>();
 
     public Set<Stock> getStock(){
