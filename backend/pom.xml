@@ -13,8 +13,6 @@
         <jacoco.threshold>0.90</jacoco.threshold>
         <jacoco.dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.dataFile>
         <skip.unit.tests>false</skip.unit.tests>
-        <skip.integration.tests>false</skip.integration.tests>
-        <failsafeArgLine>true</failsafeArgLine>
         <!--suppress UnresolvedMavenProperty -->
         <argLine>${surefireArgLine}</argLine>
     </properties>
