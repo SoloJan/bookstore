@@ -50,6 +50,28 @@ public class BookstoreController {
         return new ResponseEntity<>(bookstore, HttpStatus.OK);
     }
 
+    @PutMapping("/{name}/buy")
+    @Operation(summary = "Api for customers to buy a book from the store. It raises an exception when the store is out of stock ")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Returns the store with the book removed from its stock",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = BookstoreDto.class)) }),
+            @ApiResponse(responseCode = "404", description = "A Store with the given name does not exist. Or a book with the given ISBN does not exist",
+                    content = @Content),
+            @ApiResponse(responseCode = "400", description = "The store is out of stock, try a different store or ask the shopkeeper to order the book",
+                    content = @Content)})
+
+    public ResponseEntity<BookstoreDto> buyBook(@Parameter(example = "Jans bookstore") @PathVariable(name = "name") String name ,
+                                                  @RequestBody IsbnDto isbnDto) {
+
+
+        BookstoreDto bookstore = mapper.toDTO(service.buyBookFromStore(name, isbnDto.getIsbn()));
+        return new ResponseEntity<>(bookstore, HttpStatus.OK);
+    }
+
+
+
+
 
 
 }
