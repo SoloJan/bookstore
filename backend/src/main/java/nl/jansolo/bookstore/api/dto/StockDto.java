@@ -1,15 +1,12 @@
 package nl.jansolo.bookstore.api.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.List;
-
 @AllArgsConstructor
 @Data
-public class BookstoreDto {
+public class StockDto {
 
-    private String name;
-    private List<StockDto> stock;
+    int stockCount;
+    BookDto book;
 }
