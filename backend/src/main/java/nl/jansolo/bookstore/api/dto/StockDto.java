@@ -7,6 +7,6 @@ import lombok.Data;
 @Data
 public class StockDto {
 
-    int stockCount;
-    BookDto book;
+    private int stockCount;
+    private BookDto book;
 }

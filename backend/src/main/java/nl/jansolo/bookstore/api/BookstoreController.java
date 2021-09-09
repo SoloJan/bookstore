@@ -23,14 +23,13 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BookstoreController {
 
-
     private final BookstoreService service;
     private final BookstoreMapper mapper;
 
     @GetMapping
     @Operation(summary = "Get all the book stores")
     public ResponseEntity<List<BookstoreDto>> getBookStores() {
-        List<BookstoreDto> bookstores = service.findAllStores().stream().map(bs -> mapper.toDTO(bs)).collect(Collectors.toList());
+        List<BookstoreDto> bookstores = service.findAllStores().stream().map(mapper::toDTO).collect(Collectors.toList());
         return new ResponseEntity<>(bookstores, HttpStatus.OK);
     }
 
@@ -44,8 +43,6 @@ public class BookstoreController {
                     content = @Content)})
     public ResponseEntity<BookstoreDto> orderBook(@Parameter(example = "Jans bookstore") @PathVariable(name = "name") String name ,
                                                   @RequestBody IsbnDto isbnDto) {
-
-
         BookstoreDto bookstore = mapper.toDTO(service.orderBookForStore(name, isbnDto.getIsbn()));
         return new ResponseEntity<>(bookstore, HttpStatus.OK);
     }
@@ -60,18 +57,10 @@ public class BookstoreController {
                     content = @Content),
             @ApiResponse(responseCode = "400", description = "The store is out of stock, try a different store or ask the shopkeeper to order the book",
                     content = @Content)})
-
     public ResponseEntity<BookstoreDto> buyBook(@Parameter(example = "Jans bookstore") @PathVariable(name = "name") String name ,
                                                   @RequestBody IsbnDto isbnDto) {
-
-
         BookstoreDto bookstore = mapper.toDTO(service.buyBookFromStore(name, isbnDto.getIsbn()));
         return new ResponseEntity<>(bookstore, HttpStatus.OK);
     }
-
-
-
-
-
 
 }

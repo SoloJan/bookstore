@@ -1,7 +1,6 @@
 package nl.jansolo.bookstore.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,7 +8,6 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = {"stock"})
 public class Stock {
 
         public Stock(Bookstore store, Book book){
