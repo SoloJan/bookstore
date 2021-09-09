@@ -19,17 +19,14 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BookController {
 
-
     private final BookService service;
     private final BookMapper mapper;
 
     @GetMapping
     @Operation(summary = "Get all the books")
     public ResponseEntity<List<BookDto>> getBookStores() {
-        List<BookDto> books = service.findAllBooks().stream().map(bs -> mapper.toDTO(bs)).collect(Collectors.toList());
+        List<BookDto> books = service.findAllBooks().stream().map(mapper::toDTO).collect(Collectors.toList());
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
-
-
 
 }
