@@ -5,6 +5,40 @@ This is an example project to demonstrate the tech stack I use and like.
 
 It is a very simple bookstore application. A shopkeeper can order books for his store and a customer can buy the books, but only if they are in stock. There is a very limited set of books available and there is only one store. Both the shopkeeper and the customer can see the list of shops, and books. There is a user with username and password customer, and a user with username and password. The easiest way to interact with the application is to use the swagger documentation. Once the software runs localy you can visit it at http://localhost:8080/swagger-ui/index.html you need to login with a username developer and password developer. From there you can interact with all the api's, there is no frontend yet at this moment.   
 
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#general-project-setup">General project setup</a>
+      <ul>
+        <li><a href="#the-model-layer">The model layer</a></li>
+        <li><a href="#the-service-layer">The service layer</a></li>
+        <li><a href="#the-api-layer">The api layer</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#database-setup-and-management">Database setup and management</a>
+      <ul>
+        <li><a href="#h2-database">H2-Database</a></li>
+        <li><a href="#postgres-database">Postgres-Database</a></li>
+        <li><a href="#flyway">Flyway</a></li>
+        <li><a href="#hibernate-and-jpa">Hibernate and JPA</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#testing">Data</a>
+      <ul>
+        <li><a href="#itegration-test-with-rest-assured">Itegration test with rest assured</a></li>
+        <li><a href="#good-old-unit-test">Good old unit test</a></li>
+        <li><a href="#good-old-unit-test">Service testing</a></li>
+      </ul>
+    </li>
+  </ol>
+</details>
+
+
+
 # general project setup
 This is a spring boot project, using maven as a build tool. My project is structured by type it has different packages for different types of components, so one package for the service layer, one for the model layer and one for the rest api layer. The alternative is to structure a project by domain types so putting everything which belongs to books in one folder and everything which has to do with bookstores in an other. The later approach is much more domain driven and focussed on functionality and thats why I like that more as an concept. But structuring the project by domain makes is harder to maintain, very often the domain logic changes and very ofteren there are links between the different domain objects which often creates spagethi code so thats why I use the more technical focus. I'll go in to more detail in the different parts of my structure
 
